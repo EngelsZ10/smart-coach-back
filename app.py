@@ -1,9 +1,13 @@
 from flask import Flask,  Blueprint
+from flask_cors import CORS
 from controllers.auth import login
 from controllers.addUsuario import addUsuario
 from controllers.getFile import *
 
+
 app = Flask(__name__)
+
+CORS(app, origins=["https://smartcoach.top", "http://localhost:3000"])
 
 
 @app.route('/')

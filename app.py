@@ -3,11 +3,12 @@ from flask_cors import CORS
 from controllers.auth import login
 from controllers.addUsuario import addUsuario
 from controllers.getFile import *
+from controllers.uploadFile import upload_file_to_cpanel
 
 
 app = Flask(__name__)
 
-CORS(app, origins=["https://smartcoach.top", "http://localhost:3000"])
+CORS(app, origins=["https://smartcoach.top", "127.0.0.1:3000"])
 
 
 @app.route('/')
@@ -19,8 +20,8 @@ api = Blueprint('api', __name__)
 
 api.route("/login")(login)
 api.route("/addUsuario")(addUsuario)
-api.route("/getThumbnails")(getThumbnails)
-api.route("/getVideos")(getVideos)
+api.route("/getFiles")(getFiles)
+api.route("/uploadFile")(upload_file_to_cpanel)
 
 
 app.register_blueprint(api, url_prefix='/')

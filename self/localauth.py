@@ -2,6 +2,9 @@ import requests
 from ftplib import FTP
 
 def auth(email,pas,equipo ):
+    if not email or not pas or not equipo:
+        return False
+    
     if equipo.lower() != 'admin':
         temp = email.split("@")
         email = temp[0] + f"@{equipo}." + temp[1]

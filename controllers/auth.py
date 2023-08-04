@@ -7,6 +7,9 @@ def login():
     email = request.args.get("email")
     pas = request.args.get("pass")
     equipo = request.args.get("equipo").lower()
+    
+    if not email or not pas or not equipo:
+        return "LLamada incompleta"
 
     if equipo != 'admin':
         temp = email.split("@")
@@ -27,7 +30,7 @@ def login():
     else:
         ftp = FTP("ftp.smartcoach.top")
         try:
-            r = ftp.login(email, pas)
+            r = ftp.login(f"{email.split('@')[0]}@smartcoach.top", pas)
         except Exception as e:
             r = e
         resp = {
